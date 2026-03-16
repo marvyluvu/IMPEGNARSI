@@ -5,17 +5,18 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>IMPEGNARSI — STRIVE</title>
+<meta name="description" content="Impegnarsi. EST 2022. Strive."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<!-- Fonts matching the Protect aesthetic -->
+<!-- Fonts: Barlow Condensed for that industrial 'Protect' look, Cormorant for luxury headers -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-/* ── VARIABLES (EXACT PROTECT PALETTE) ── */
+/* ── VARIABLES (PROTECT STYLE + FOREST GREEN) ── */
 :root {
 --bg: #ffffff;
 --text: #000000;
 --mid: #666666;
---border: #e5e5e5;
+--border: #000000; /* Black Borders like Protect */
 --accent: #1a472a; /* FOREST GREEN */
 --font-main: 'Barlow Condensed', sans-serif;
 --font-serif: 'Cormorant Garamond', serif;
@@ -32,12 +33,19 @@ color: var(--text);
 line-height: 1.4;
 overflow-x: hidden;
 padding-top: var(--header-height);
-text-transform: uppercase; /* Protect Style: All Caps UI */
+text-transform: uppercase; /* Protect style: mostly uppercase */
 }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
 ul { list-style: none; }
+
+/* ── UTILITIES ── */
+.mono { font-family: var(--font-main); font-weight: 600; letter-spacing: 0.05em; }
+.serif { font-family: var(--font-serif); text-transform: none; font-style: italic; }
+.bold { font-weight: 700; }
+.flex { display: flex; }
+.grid { display: grid; }
 
 /* ── HEADER (EXACT PROTECT LAYOUT) ── */
 .site-header {
@@ -72,7 +80,6 @@ font-weight: 600;
 font-style: italic;
 color: var(--text);
 letter-spacing: -0.02em;
-text-transform: none; /* Logo stays normal case */
 }
 
 .nav-trigger, .cart-trigger {
@@ -124,98 +131,22 @@ padding-bottom: 10px;
 color: var(--text);
 }
 
-/* ── HERO ── */
-.hero {
-position: relative;
-height: 80vh;
-min-height: 500px;
-overflow: hidden;
-display: flex;
-align-items: center;
-justify-content: center;
-background: #f4f4f4;
-}
-.hero-img {
-position: absolute;
-inset: 0;
-width: 100%;
-height: 100%;
-object-fit: cover;
-filter: grayscale(20%);
-}
-.hero-content {
-position: relative;
-z-index: 2;
-text-align: center;
-color: var(--text);
-}
-.hero-title {
-font-family: var(--font-serif);
-font-size: clamp(3rem, 10vw, 8rem);
-font-weight: 400;
-font-style: italic;
-line-height: 0.9;
-margin-bottom: 20px;
-text-transform: none; /* Hero title normal case */
-}
-.hero-btn {
-display: inline-block;
-background: var(--text);
-color: var(--bg);
-font-family: var(--font-main);
-font-weight: 700;
-text-transform: uppercase;
-padding: 14px 32px;
-font-size: 14px;
-letter-spacing: 0.1em;
-transition: background 0.2s;
-}
-.hero-btn:hover { 
-background: var(--accent); /* Forest Green Hover */
-color: #fff;
-}
-
-/* ── FILTERS ── */
-.filter-bar {
-position: sticky;
-top: var(--header-height);
-background: var(--bg);
-z-index: 90;
-padding: 20px;
-border-bottom: 1px solid var(--border);
-display: flex;
-justify-content: center;
-gap: 20px;
-flex-wrap: wrap;
-}
-.filter-pill {
-font-family: var(--font-main);
-font-size: 13px;
-font-weight: 600;
-text-transform: uppercase;
-color: var(--mid);
-cursor: pointer;
-padding: 5px 0;
-border-bottom: 2px solid transparent;
-transition: all 0.2s;
-}
-.filter-pill:hover, .filter-pill.active {
-color: var(--text);
-border-color: var(--accent); /* Forest Green Underline */
-}
-
-/* ── PRODUCT GRID (EXACT PROTECT STYLE) ── */
+/* ── COLLECTION SECTION (NO HERO) ── */
 .collection-section {
 max-width: 1600px;
 margin: 0 auto;
+padding-top: 20px;
 }
+
+/* ── PRODUCT GRID (EXACT PROTECT STYLE WITH LINES) ── */
 .product-grid {
 display: grid;
 grid-template-columns: repeat(4, 1fr); /* Desktop 4 cols */
-gap: 1px; /* Tiny gap for grid lines */
-background: var(--border); /* Creates the grid lines */
+/* No gap needed because borders create the grid */
+background: var(--border); 
 border: 1px solid var(--border);
 }
+
 @media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 768px)  { .product-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px)  { .product-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -223,9 +154,21 @@ border: 1px solid var(--border);
 .product-card {
 background: var(--bg);
 position: relative;
-group: product;
 cursor: pointer;
+/* Borders are created by the grid background showing through gaps if we had them, 
+   but here we use explicit borders on children or just rely on the grid bg */
+border-right: 1px solid var(--border);
+border-bottom: 1px solid var(--border);
 }
+/* Remove right border on last item of row handled by JS or CSS nth-child, 
+   but simpler to just let the grid bg show if we used gap. 
+   Here we use explicit borders on cards. */
+.product-card:nth-child(4n) { border-right: none; }
+@media (max-width: 1024px) { .product-card:nth-child(4n) { border-right: 1px solid var(--border); } .product-card:nth-child(3n) { border-right: none; } }
+@media (max-width: 768px) { .product-card:nth-child(3n) { border-right: 1px solid var(--border); } .product-card:nth-child(2n) { border-right: none; } }
+@media (max-width: 480px) { .product-card:nth-child(2n) { border-right: 1px solid var(--border); } .product-card:nth-child(2n) { border-right: none; } }
+
+
 .card-image-wrap {
 position: relative;
 aspect-ratio: 1/1; /* SQUARE IMAGES like Protect */
@@ -253,6 +196,7 @@ transition: opacity 0.3s ease;
 .card-info {
 padding: 12px;
 text-align: left;
+border-top: 1px solid transparent; /* Placeholder if needed */
 }
 .card-title {
 font-family: var(--font-main);
@@ -293,7 +237,9 @@ background: var(--text); /* Black BG for contrast */
 color: var(--bg);
 padding: 60px 0;
 overflow: hidden;
-margin-top: 60px;
+margin-top: 0;
+border-top: 1px solid var(--border);
+border-bottom: 1px solid var(--border);
 }
 .testi-header {
 text-align: center;
@@ -304,7 +250,6 @@ font-family: var(--font-serif);
 font-size: 3rem;
 font-style: italic;
 color: var(--bg);
-text-transform: none;
 }
 .testi-marquee {
 display: flex;
@@ -518,7 +463,6 @@ font-style: italic;
 margin-bottom: 20px;
 display: block;
 color: var(--text);
-text-transform: none;
 }
 .footer-links {
 display: flex;
@@ -579,25 +523,7 @@ CART <span class="cart-count" id="cart-count">0</span>
 </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-<img class="hero-img" src="https://impegnarsi.com/cdn/shop/files/FullSizeRender_Afterlight_cb63aa68-0d52-49ab-b103-4676dc897610.jpg?v=1766421813&width=1500" alt="Hero"/>
-<div class="hero-content">
-<h1 class="hero-title">Strive.</h1>
-<a href="#collection" class="hero-btn">Shop Collection</a>
-</div>
-</section>
-
-<!-- FILTERS -->
-<div class="filter-bar">
-<button class="filter-pill active" onclick="filterProducts(event,'all')">All</button>
-<button class="filter-pill" onclick="filterProducts(event,'sweats')">Sweats</button>
-<button class="filter-pill" onclick="filterProducts(event,'denim')">Denim</button>
-<button class="filter-pill" onclick="filterProducts(event,'outerwear')">Outerwear</button>
-<button class="filter-pill" onclick="filterProducts(event,'tees')">Tees</button>
-</div>
-
-<!-- COLLECTION -->
+<!-- COLLECTION (NO HERO) -->
 <section class="collection-section" id="collection">
 <div class="product-grid" id="product-grid">
 <!-- Skeletons -->
@@ -966,7 +892,8 @@ renderProducts();
 function filterProducts(e, cat) {
 e.preventDefault();
 currentFilter = cat;
-document.querySelectorAll('.filter-pill').forEach(el => el.classList.remove('active'));
+document.querySelectorAll('.mobile-link').forEach(el => el.classList.remove('active'));
+// Simple active state for mobile menu
 document.querySelectorAll(`[onclick*="'${cat}'"]`).forEach(el => el.classList.add('active'));
 renderProducts();
 document.getElementById('collection').scrollIntoView({behavior:'smooth'});
