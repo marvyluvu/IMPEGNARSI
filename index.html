@@ -1,16 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>IMPEGNARSI — STRIVE</title>
-<meta name="description" content="Impegnarsi. EST 2022. Strive."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<!-- Fonts: Barlow Condensed for that industrial 'Protect' look, Cormorant for luxury headers -->
+<!-- Fonts matching the Protect aesthetic -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-/* ── VARIABLES (PROTECT STYLE + FOREST GREEN) ── */
+/* ── VARIABLES (EXACT PROTECT PALETTE) ── */
 :root {
 --bg: #ffffff;
 --text: #000000;
@@ -32,19 +32,12 @@ color: var(--text);
 line-height: 1.4;
 overflow-x: hidden;
 padding-top: var(--header-height);
-text-transform: uppercase; /* Protect style: mostly uppercase */
+text-transform: uppercase; /* Protect Style: All Caps UI */
 }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
 ul { list-style: none; }
-
-/* ── UTILITIES ── */
-.mono { font-family: var(--font-main); font-weight: 600; letter-spacing: 0.05em; }
-.serif { font-family: var(--font-serif); text-transform: none; font-style: italic; }
-.bold { font-weight: 700; }
-.flex { display: flex; }
-.grid { display: grid; }
 
 /* ── HEADER (EXACT PROTECT LAYOUT) ── */
 .site-header {
@@ -79,6 +72,7 @@ font-weight: 600;
 font-style: italic;
 color: var(--text);
 letter-spacing: -0.02em;
+text-transform: none; /* Logo stays normal case */
 }
 
 .nav-trigger, .cart-trigger {
@@ -162,6 +156,7 @@ font-weight: 400;
 font-style: italic;
 line-height: 0.9;
 margin-bottom: 20px;
+text-transform: none; /* Hero title normal case */
 }
 .hero-btn {
 display: inline-block;
@@ -209,7 +204,7 @@ color: var(--text);
 border-color: var(--accent); /* Forest Green Underline */
 }
 
-/* ── PRODUCT GRID (PROTECT STYLE) ── */
+/* ── PRODUCT GRID (EXACT PROTECT STYLE) ── */
 .collection-section {
 max-width: 1600px;
 margin: 0 auto;
@@ -309,6 +304,7 @@ font-family: var(--font-serif);
 font-size: 3rem;
 font-style: italic;
 color: var(--bg);
+text-transform: none;
 }
 .testi-marquee {
 display: flex;
@@ -522,6 +518,7 @@ font-style: italic;
 margin-bottom: 20px;
 display: block;
 color: var(--text);
+text-transform: none;
 }
 .footer-links {
 display: flex;
@@ -614,7 +611,7 @@ CART <span class="cart-count" id="cart-count">0</span>
 <!-- TESTIMONIALS -->
 <section class="testimonials-section">
 <div class="testi-header">
-<h2 class="testi-title serif">Community Stories</h2>
+<h2 class="testi-title">Community Stories</h2>
 <p class="mono" style="opacity:0.7; font-size:12px;">REAL FEEDBACK</p>
 </div>
 <div class="testi-marquee">
@@ -985,3 +982,4 @@ init();
 </script>
 </body>
 </html>
+```
