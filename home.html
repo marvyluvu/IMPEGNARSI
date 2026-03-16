@@ -10,13 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root {
-/* DARK MODE COLORS */
---bg: #0a0a0a;
---card-bg: #111111;
---text: #f5f3f0;
---mid: #6b6b6b;
---border: #2a2a2a;
---accent: #c9a96e;
+/* INVERTED COLORS */
+--bg: #f9f9f9;       /* Light Background */
+--card-bg: #ffffff;  /* White Cards */
+--text: #0a0a0a;     /* Black Text */
+--mid: #666666;      /* Gray Text */
+--border: #e5e5e5;   /* Light Border */
+--accent: #c9a96e;   /* Gold Accent */
 --serif: 'Cormorant Garamond', Georgia, serif;
 --sans: 'Barlow', sans-serif;
 --cond: 'Barlow Condensed', sans-serif;
@@ -36,8 +36,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* ── MARQUEE ── */
 .marquee-bar {
-background: var(--accent);
-color: var(--bg);
+background: var(--text); /* Black Bar */
+color: var(--bg);        /* White Text */
 height: 32px;
 overflow: hidden;
 display: flex;
@@ -69,7 +69,7 @@ padding: 0 40px;
 position: sticky;
 top: 0;
 z-index: 100;
-background: rgba(10,10,10,0.95);
+background: rgba(249,249,249,0.95);
 backdrop-filter: blur(12px);
 border-bottom: 1px solid var(--border);
 height: 64px;
@@ -90,7 +90,7 @@ font-size: 12px;
 font-weight: 600;
 letter-spacing: 0.12em;
 text-transform: uppercase;
-color: rgba(245,243,240,0.6);
+color: var(--mid);
 transition: color 0.2s;
 }
 .nav-link:hover { color: var(--text); }
@@ -108,18 +108,17 @@ color: var(--text);
 .icon-btn {
 width: 38px; height: 38px;
 display: flex; align-items: center; justify-content: center;
-color: rgba(245,243,240,0.7);
+color: var(--text);
 transition: color 0.2s;
 position: relative;
 }
-.icon-btn:hover { color: var(--text); }
 .icon-btn svg { width: 18px; height: 18px; stroke-width: 1.5; }
 .cart-count {
 position: absolute;
 top: 4px; right: 4px;
 width: 14px; height: 14px;
 background: var(--accent);
-color: var(--bg);
+color: var(--text);
 border-radius: 50%;
 font-size: 8px;
 font-weight: 700;
@@ -145,14 +144,13 @@ inset: 0;
 width: 100%;
 height: 100%;
 object-fit: cover;
-opacity: 0.5;
-transition: opacity 1s;
+opacity: 0.85; /* Brighter for light mode */
+filter: grayscale(20%);
 }
-.hero-img.loaded { opacity: 0.55; }
 .hero-overlay {
 position: absolute;
 inset: 0;
-background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.2) 60%, transparent 100%);
+background: linear-gradient(to top, rgba(249,249,249,1) 0%, rgba(249,249,249,0.4) 60%, transparent 100%);
 }
 .hero-content {
 position: relative;
@@ -189,12 +187,13 @@ font-size: 12px;
 font-weight: 700;
 letter-spacing: 0.15em;
 text-transform: uppercase;
-color: var(--bg);
-background: var(--text);
+color: var(--text);
+background: var(--text); /* Black Button */
+color: var(--bg);        /* White Text */
 padding: 14px 28px;
 transition: background 0.2s, color 0.2s;
 }
-.hero-cta:hover { background: var(--accent); color: var(--bg); }
+.hero-cta:hover { background: var(--accent); color: var(--text); }
 .hero-cta svg { width: 14px; height: 14px; stroke-width: 2; }
 
 /* ── COLLECTION ── */
@@ -253,7 +252,7 @@ transition: all 0.2s;
 display: grid;
 grid-template-columns: repeat(4, 1fr);
 gap: 2px;
-background: var(--border);
+background: var(--border); /* Creates borders between items */
 border: 1px solid var(--border);
 }
 @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -269,15 +268,14 @@ overflow: hidden;
 position: relative;
 aspect-ratio: 3/4;
 overflow: hidden;
-background: #161616;
+background: #f0f0f0;
 }
 .card-img img {
 width: 100%; height: 100%;
 object-fit: cover;
 transition: transform 0.7s ease;
-filter: grayscale(20%);
 }
-.product-card:hover .card-img img { transform: scale(1.05); filter: grayscale(0%); }
+.product-card:hover .card-img img { transform: scale(1.05); }
 .card-info { padding: 14px 16px 20px; }
 .card-title {
 font-family: var(--cond);
@@ -285,7 +283,7 @@ font-size: 12px;
 font-weight: 600;
 letter-spacing: 0.08em;
 text-transform: uppercase;
-color: rgba(245,243,240,0.9);
+color: var(--text);
 margin-bottom: 6px;
 }
 .card-price {
@@ -307,13 +305,12 @@ z-index: 2;
 background: var(--text);
 color: var(--bg);
 }
-.badge.new { background: var(--accent); color: var(--bg); }
+.badge.new { background: var(--accent); color: var(--text); }
 
 /* ── TESTIMONIALS ── */
 .testimonials-section {
-background: #0f0f0f;
-border-top: 1px solid var(--border);
-border-bottom: 1px solid var(--border);
+background: var(--text); /* Black Background */
+color: var(--bg);        /* White Text */
 padding: 80px 0;
 overflow: hidden;
 }
@@ -327,7 +324,6 @@ font-size: clamp(32px, 5vw, 48px);
 font-style: italic;
 font-weight: 300;
 margin-bottom: 10px;
-color: var(--text);
 }
 .testi-sub {
 font-family: var(--cond);
@@ -347,12 +343,12 @@ width: max-content;
 100% { transform: translateX(-50%); }
 }
 .testi-card {
-background: var(--card-bg);
+background: var(--bg);
 color: var(--text);
 padding: 30px;
 width: 380px;
 flex-shrink: 0;
-border: 1px solid var(--border);
+border: 1px solid #333;
 }
 .testi-stars { color: var(--accent); letter-spacing: 2px; margin-bottom: 10px; }
 .testi-text {
@@ -360,7 +356,6 @@ font-family: var(--serif);
 font-size: 18px;
 line-height: 1.5;
 font-style: italic;
-color: #e0e0e0;
 }
 .testi-author {
 font-family: var(--cond);
@@ -372,7 +367,7 @@ margin-top: 15px;
 color: var(--mid);
 }
 
-/* ── FULL SCREEN GALLERY MODAL ── */
+/* ── FULL SCREEN GALLERY MODAL (NEW) ── */
 .gallery-modal {
 position: fixed;
 inset: 0;
@@ -402,7 +397,6 @@ letter-spacing: 0.1em;
 display: flex;
 align-items: center;
 gap: 8px;
-color: var(--text);
 }
 .gallery-close svg { width: 16px; height: 16px; }
 .gallery-body {
@@ -414,7 +408,7 @@ overflow: hidden;
 /* Left: Images */
 .gallery-stage {
 position: relative;
-background: #000;
+background: #f4f4f4;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -431,16 +425,15 @@ top: 50%;
 transform: translateY(-50%);
 width: 50px;
 height: 50px;
-background: rgba(255,255,255,0.1);
+background: rgba(255,255,255,0.8);
 border: 1px solid var(--border);
-color: var(--text);
 display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
 transition: background 0.2s;
 }
-.gallery-nav-btn:hover { background: rgba(255,255,255,0.2); }
+.gallery-nav-btn:hover { background: #fff; }
 .prev-btn { left: 20px; }
 .next-btn { right: 20px; }
 .gallery-counter {
@@ -461,14 +454,12 @@ padding: 40px;
 overflow-y: auto;
 display: flex;
 flex-direction: column;
-background: var(--bg);
 }
 .detail-title {
 font-family: var(--serif);
 font-size: 32px;
 font-style: italic;
 margin-bottom: 10px;
-color: var(--text);
 }
 .detail-price {
 font-family: var(--sans);
@@ -492,7 +483,6 @@ font-weight: 700;
 text-transform: uppercase;
 letter-spacing: 0.1em;
 margin-bottom: 12px;
-color: var(--mid);
 }
 .size-options {
 display: flex;
@@ -512,10 +502,9 @@ font-size: 12px;
 font-weight: 600;
 cursor: pointer;
 transition: all 0.2s;
-color: var(--mid);
 }
-.size-opt:hover:not(:disabled) { border-color: var(--text); color: var(--text); }
-.size-opt.selected { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.size-opt:hover:not(:disabled) { border-color: var(--text); }
+.size-opt.selected { background: var(--text); color: var(--bg); border-color: var(--text); }
 .size-opt:disabled { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
 .add-to-bag-btn {
 width: 100%;
@@ -530,16 +519,16 @@ text-transform: uppercase;
 margin-top: auto;
 transition: background 0.2s;
 }
-.add-to-bag-btn:hover:not(:disabled) { background: var(--accent); color: var(--bg); }
+.add-to-bag-btn:hover:not(:disabled) { background: var(--accent); color: var(--text); }
 .add-to-bag-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* ── CART DRAWER ── */
-.cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
 .cart-overlay.open { opacity: 1; pointer-events: all; }
 .cart-drawer {
 position: fixed; top: 0; right: 0; bottom: 0;
 width: 420px; max-width: 100vw;
-background: #111;
+background: var(--bg);
 border-left: 1px solid var(--border);
 z-index: 201;
 transform: translateX(100%);
@@ -551,13 +540,13 @@ display: flex; flex-direction: column;
 display: flex; align-items: center; justify-content: space-between;
 padding: 24px 28px; border-bottom: 1px solid var(--border);
 }
-.cart-header h2 { font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--text); }
+.cart-header h2 { font-family: var(--serif); font-size: 22px; font-style: italic; }
 .cart-items { flex: 1; overflow-y: auto; padding: 24px 28px; }
 .cart-item {
 display: grid; grid-template-columns: 80px 1fr auto; gap: 16px;
 padding: 16px 0; border-bottom: 1px solid var(--border);
 }
-.cart-item-img { width: 80px; height: 100px; object-fit: cover; background: #161616; }
+.cart-item-img { width: 80px; height: 100px; object-fit: cover; background: #f0f0f0; }
 .cart-footer { padding: 24px 28px; border-top: 1px solid var(--border); }
 .checkout-btn {
 display: block; width: 100%; padding: 16px;
@@ -565,7 +554,7 @@ background: var(--text); color: var(--bg);
 font-family: var(--cond); font-size: 12px; font-weight: 700;
 text-transform: uppercase; text-align: center;
 }
-.checkout-btn:hover { background: var(--accent); color: var(--bg); }
+.checkout-btn:hover { background: var(--accent); color: var(--text); }
 .checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* ── MOBILE ── */
@@ -591,7 +580,7 @@ text-transform: uppercase; text-align: center;
 .toast {
 position: fixed; bottom: 32px; left: 50%;
 transform: translateX(-50%) translateY(80px);
-background: var(--accent); color: var(--bg);
+background: var(--text); color: var(--bg);
 font-family: var(--cond); font-size: 11px; font-weight: 700;
 letter-spacing: 0.12em; text-transform: uppercase;
 padding: 12px 24px; z-index: 500;
@@ -606,10 +595,10 @@ transform: translateX(-100%); transition: transform 0.35s ease;
 display: flex; flex-direction: column; padding: 80px 32px 48px;
 }
 .mobile-menu.open { transform: translateX(0); }
-.mobile-menu-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: var(--mid); }
+.mobile-menu-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
 .mobile-nav-link {
 font-family: var(--serif); font-size: 36px; font-weight: 300; font-style: italic;
-color: rgba(245,243,240,0.7); padding: 16px 0; border-bottom: 1px solid var(--border);
+color: var(--text); padding: 16px 0; border-bottom: 1px solid var(--border);
 }
 </style>
 </head>
@@ -685,10 +674,10 @@ color: rgba(245,243,240,0.7); padding: 16px 0; border-bottom: 1px solid var(--bo
 </div>
 <div class="product-grid" id="product-grid">
 <!-- Skeletons -->
-<div style="background:#161616; aspect-ratio:3/4;"></div>
-<div style="background:#161616; aspect-ratio:3/4;"></div>
-<div style="background:#161616; aspect-ratio:3/4;"></div>
-<div style="background:#161616; aspect-ratio:3/4;"></div>
+<div style="background:#f0f0f0; aspect-ratio:3/4;"></div>
+<div style="background:#f0f0f0; aspect-ratio:3/4;"></div>
+<div style="background:#f0f0f0; aspect-ratio:3/4;"></div>
+<div style="background:#f0f0f0; aspect-ratio:3/4;"></div>
 </div>
 </section>
 
@@ -729,8 +718,8 @@ color: rgba(245,243,240,0.7); padding: 16px 0; border-bottom: 1px solid var(--bo
 </section>
 
 <!-- FOOTER -->
-<footer style="background:#080808; border-top:1px solid var(--border); padding:64px 32px; text-align:center;">
-<p style="font-family:var(--serif); font-size:24px; font-style:italic; margin-bottom:10px; color:var(--text);">Impegnarsi</p>
+<footer style="background:#fff; border-top:1px solid var(--border); padding:64px 32px; text-align:center;">
+<p style="font-family:var(--serif); font-size:24px; font-style:italic; margin-bottom:10px;">Impegnarsi</p>
 <p style="font-family:var(--cond); font-size:11px; color:var(--mid); text-transform:uppercase;">EST 2022. London. Strive.</p>
 </footer>
 
@@ -740,8 +729,8 @@ color: rgba(245,243,240,0.7); padding: 16px 0; border-bottom: 1px solid var(--bo
 <div class="cart-header"><h2>Your Bag</h2><button class="icon-btn" id="close-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
 <div class="cart-items" id="cart-items"><p style="text-align:center; color:var(--mid); margin-top:50px;">Your bag is empty</p></div>
 <div class="cart-footer">
-<div style="display:flex; justify-content:space-between; margin-bottom:20px; font-family:var(--cond); text-transform:uppercase; font-size:11px; color:var(--mid);">
-<span>Total</span><span id="cart-total" style="font-family:var(--serif); font-size:18px; text-transform:none; color:var(--text);">Dhs. 0.00</span>
+<div style="display:flex; justify-content:space-between; margin-bottom:20px; font-family:var(--cond); text-transform:uppercase; font-size:11px;">
+<span>Total</span><span id="cart-total" style="font-family:var(--serif); font-size:18px; text-transform:none;">Dhs. 0.00</span>
 </div>
 <button class="checkout-btn" id="checkout-btn" disabled onclick="goCheckout()">Checkout</button>
 </div>
@@ -750,7 +739,7 @@ color: rgba(245,243,240,0.7); padding: 16px 0; border-bottom: 1px solid var(--bo
 <!-- FULL SCREEN GALLERY MODAL -->
 <div class="gallery-modal" id="gallery-modal">
 <div class="gallery-header">
-<div style="font-family:var(--cond); font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--mid);" id="modal-breadcrumb">Product View</div>
+<div style="font-family:var(--cond); font-size:11px; text-transform:uppercase; letter-spacing:0.1em;" id="modal-breadcrumb">Product View</div>
 <button class="gallery-close" onclick="closeGallery()">
 Close <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
 </button>
@@ -1009,12 +998,12 @@ return `
 <div class="cart-item">
 <img class="cart-item-img" src="${img}&width=160"/>
 <div>
-<p style="font-family:var(--cond); font-weight:700; text-transform:uppercase; font-size:12px; color:var(--text);">${m.product.title}</p>
+<p style="font-family:var(--cond); font-weight:700; text-transform:uppercase; font-size:12px;">${m.product.title}</p>
 <p style="font-size:11px; color:var(--mid); margin:4px 0;">${m.title !== 'Default Title' ? m.title : ''}</p>
-<p style="font-size:11px; color:var(--mid);">Qty: ${line.quantity}</p>
+<p style="font-size:11px;">Qty: ${line.quantity}</p>
 </div>
 <div style="text-align:right;">
-<p style="font-size:13px; color:var(--text);">${formatPrice(m.price.amount)}</p>
+<p style="font-size:13px;">${formatPrice(m.price.amount)}</p>
 <button style="font-size:10px; text-decoration:underline; color:var(--mid); margin-top:8px;" onclick="removeLine('${line.id}')">Remove</button>
 </div>
 </div>`;
